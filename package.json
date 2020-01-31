@@ -1,0 +1,22 @@
+{
+  "name": "grabber",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server"
+  },
+  "author": "js",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.2.5",
+    "express": "^4.17.1",
+    "fb": "^2.0.0",
+    "mongoose": "^5.8.10",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
