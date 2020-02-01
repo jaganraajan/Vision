@@ -5,17 +5,20 @@ const Schema = mongoose.Schema;
 const BrandSchema = new Schema({
 
 
- sentiments: [Number]
+    
+        name: {
+            type: String,
+            required: true
+        },
+        sentiments: {
+            type: [Number]
+        }
+    
+    
+    
 
 });
 
-// sentiments:  [
-//     {
-//         sentiment: {
-//             type: String
-//         }
-//     }
-// ]
-// });
+
 
 module.exports = Brand = mongoose.model("brand", BrandSchema);

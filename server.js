@@ -16,32 +16,6 @@ app.use(bodyParser.json());
 
 app.use("/api/brand", brand);
 
-// app.post(
-//     "/",
-  
-  
-//     async (req, res) => {
-      
-  
-   
-  
-//       try {
-        
-  
-//         const newBrand= new Brand({
-//           sentiments: req.body.sentiments
-         
-//         });
-  
-//         const brand = await newBrand.save();
-  
-//         res.json(brand);
-//       } catch (err) {
-//         console.log(err);
-//         res.status(500).send("Server Error");
-//       }
-//     }
-//   );
 
 
 

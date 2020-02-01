@@ -21,6 +21,7 @@ router.post(
       console.log(req.body.sentiments);
 
       const newBrand= new Brand({
+        name: req.body.name,
         sentiments: req.body.sentiments
        
       });
@@ -43,12 +44,14 @@ router.get(
   "/sentiments",
   async (req, res) => {
     try {
-      const sentiments = await Brand.find();
+      const brand = await Brand.findOne({ name: req.body.name });
 
-      if (sentiments.length < 1)
-        return res.status(404).json({ msg: "No posts were found" });
+      if (!brand)
+        return res
+          .status(404)
+          .json({ msg: "No info was found for specified brand" });
 
-      return res.status(200).json(sentiments);
+      return res.status(200).json(brand.sentiments);
     } catch (err) {
       console.log(err);
       return res.status(500).send("server error");
