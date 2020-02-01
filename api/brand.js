@@ -20,15 +20,38 @@ router.post(
       
       console.log(req.body.sentiments);
 
-      const newBrand= new Brand({
-        name: req.body.name,
-        sentiments: req.body.sentiments
-       
-      });
+      const brandFields = {};
 
-      const brand = await newBrand.save();
+      if (req.body.name) brandFields.name = req.body.name;
+      if( req.body.sentiments) brandFields.sentiments = req.body.sentiments;
 
-      res.json(brand);
+       const brandExists = await Brand.findOne({name: req.body.name})
+
+       if (brandExists){
+        const brand = await Brand.findOneAndUpdate(
+          { name: req.body.name },
+          { $set: brandFields },
+          { new: true })
+
+          res.json(brand)
+
+       } 
+       else {
+
+          const newBrand= new Brand({
+          name: req.body.name,
+          sentiments: req.body.sentiments
+         
+        });
+  
+        const brand = await newBrand.save();
+  
+        res.json(brand);
+
+       }
+
+
+
     } catch (err) {
       console.log(err);
       res.status(500).send("Server Error");
