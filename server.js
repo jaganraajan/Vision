@@ -2,7 +2,7 @@ const express = require('express');
 const connectDB = require('./config/db')
 const bodyParser = require('body-parser');
 const brand = require("./api/brand");
-const Brand = require("./Models/Brand");
+const auth = require("./api/auth");
 const app = express();
 
 
@@ -15,8 +15,7 @@ app.use(bodyParser.json());
 
 
 app.use("/api/brand", brand);
-
-
+app.use("/api/auth", auth);
 
 
 const PORT = process.env.PORT || 5000;

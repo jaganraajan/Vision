@@ -4,6 +4,10 @@ const Schema = mongoose.Schema;
 
 const BrandSchema = new Schema({
 
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: "users"
+        },
 
     
         name: {
@@ -21,4 +25,4 @@ const BrandSchema = new Schema({
 
 
 
-module.exports = Brand = mongoose.model("brand", BrandSchema);
+module.exports = Brand = mongoose.model("brands", BrandSchema);
