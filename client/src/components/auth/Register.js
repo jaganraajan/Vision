@@ -7,7 +7,34 @@ import PropTypes from "prop-types";
 
 // { setAlert, register, isAuthenticated }
 
-const Register = () => {
+const Register = ({register,isAuthenticated}) => {
+
+  const [formData,setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    password2:""
+  })
+
+  const {name,email,password,password2} = formData;
+
+  const onChange = e => setFormData({...formData, [e.target.name]: e.target.value})
+
+  const onSubmit = e => {
+    e.preventDefault();
+    
+    if(password !== password2){
+      console.log('passwords not equal')
+    }
+
+    else {
+      register({name,email,password})
+    }
+  }
+    
+  
+
+  if(isAuthenticated) return <Redirect to ='/'/>
 
   return (
     <Fragment>
@@ -15,12 +42,14 @@ const Register = () => {
       <p className="lead">
         <i className="fas fa-user" /> Create Your Account
       </p>
-      <form className="form" >
+      <form className="form" onSubmit ={e => onSubmit(e)}>
         <div className="form-group">
           <input
             type="text"
             placeholder="Name"
             name="name"
+            value={name}
+            onChange = {e => onChange(e)}
             
             
           />
@@ -30,6 +59,8 @@ const Register = () => {
             type="email"
             placeholder="Email Address"
             name="email"
+            value={email}
+            onChange = {e => onChange(e)}
             
             
           />
@@ -43,6 +74,8 @@ const Register = () => {
             type="password"
             placeholder="Password"
             name="password"
+            value={password}
+            onChange = {e => onChange(e)}
             
             
           />
@@ -52,6 +85,8 @@ const Register = () => {
             type="password"
             placeholder="Confirm Password"
             name="password2"
+            value={password2}
+            onChange = {e => onChange(e)}
             
             
           />
@@ -65,6 +100,17 @@ const Register = () => {
   );
 };
 
+Register.propTypes = {
+
+  isAuthenticated: PropTypes.bool,
+  register: PropTypes.func.isRequired
 
 
-export default Register
+}
+const mapStateToProps = state => ({
+  isAuthenticated : state.auth.isAuthenticated
+})
+
+
+
+export default connect(mapStateToProps,{register})(Register)

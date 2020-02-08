@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server",
     "server": "nodemon server",
-    "client" : "npm start --prefix client",
+    "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \" npm run client\""
   },
   "author": "js",
@@ -15,6 +15,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "config": "^3.2.5",
+    "cors": "^2.8.5",
     "errorhandler": "^1.5.1",
     "express": "^4.17.1",
     "fb": "^2.0.0",
@@ -23,6 +24,7 @@
     "method-override": "^3.0.0",
     "mongoose": "^5.8.10",
     "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
     "pug": "^2.0.4",
     "request": "^2.88.0"
   },

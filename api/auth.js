@@ -5,32 +5,58 @@ const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const User = require("../Models/User");
 const config = require("config");
+const cors = require('cors');
 
+
+
+
+var whitelist = ['http://localhost:3000'];
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
 
 //@route GET api/auth
 //@desc authenticate registered user
 //@access private
+// router.get(
+//   "/current", 
+//   passport.authenticate("jwt", { session: false }),
+//   async (req, res) => {
+//     try {
+//       const user = await User.findById(req.user.id).select("-password");
+
+//       res.json(user);
+//     } catch (err) {
+//       console.log("Server Error");
+//       res.status(500).send(err.message);
+//     }
+//   }
+// );
 
 router.get(
-  "/current",
+  "/current", cors(corsOptions),
   passport.authenticate("jwt", { session: false }),
-  async (req, res) => {
-    try {
-      const user = User.findById(req.user.id).select("-password");
-
-      res.json(user);
-    } catch (err) {
-      console.log("Server Error");
-      res.status(500).send(err.message);
-    }
+  (req, res) => {
+    res.json({
+      name: req.user.name,
+      email: req.user.email,
+      id: req.user.id
+    });
   }
 );
+
 
 // @ POST api/login
 // @desc authenticate user and get token
 // @access public
 router.post(
-  "/login",
+  "/login", cors(corsOptions),
   async (req, res) => {
     
     // if (!errors.isEmpty())
@@ -80,7 +106,7 @@ router.post(
 // @ POST api/users/register
 // @desc Register user
 // @access public
-router.post("/register",
+router.post("/register", 
 
 async (req, res) => {
     
@@ -119,12 +145,12 @@ async (req, res) => {
                   (err, token) => {
                     res.json({
                       success: true,
-                      token: token
+                      token: "Bearer " + token
                     });
                   }
                 );
               })
-              .catch(err => console.log(err));
+              .catch(err => window.alert('bla',err));
           });
         });
       }
