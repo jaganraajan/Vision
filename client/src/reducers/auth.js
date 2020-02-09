@@ -1,17 +1,17 @@
 import {
-    REGISTER_SUCCESS,
-    REGISTER_FAIL,
-    USER_LOADED,
+    SIGN_UP,
+    SIGN_UP_REFUSED,
+    LOAD_USER,
     AUTH_ERROR,
-    LOGIN_SUCCESS,
-    LOGIN_FAIL,
-    LOGOUT,
+    SIGN_IN,
+    SIGN_IN_REFUSED,
+    SIGN_OUT,
     ACCOUNT_DELETED
   } from "../actions/types";
   
   const initialState = {
     token: localStorage.getItem("token"),
-    isAuthenticated: null,
+    isAuthenticated: false,
     loading: true,
     user: null
   };
@@ -20,7 +20,7 @@ import {
 
     switch(type){
 
-        case USER_LOADED:        
+        case LOAD_USER:        
         return {
             ...state,
             isAuthenticated: true,
@@ -31,8 +31,8 @@ import {
 
 
 
-        case REGISTER_SUCCESS:
-        case LOGIN_SUCCESS:
+        case SIGN_UP:
+        case SIGN_IN:
         localStorage.setItem("token", payload.token)
         return {
             ...state,
@@ -40,8 +40,9 @@ import {
             loading: false
             
         };
-        case REGISTER_FAIL:
-        case LOGIN_FAIL:
+        case SIGN_UP_REFUSED:
+        case SIGN_IN_REFUSED:
+        case SIGN_OUT:
 
         localStorage.removeItem("token");
         return{

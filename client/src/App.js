@@ -1,20 +1,25 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect} from 'react';
 
 import './App.css';
-import Navbar from "./components/layout/Navbar";
+import Header from "./components/layout/Header";
 import Landing from "./components/layout/Landing";
 import Routes from "./components/routing/Routes";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {Provider} from 'react-redux';
-
+import {loadUser} from './actions/auth';
 import store from './store';
 
-const App =() => (
+const App =() => {
+  useEffect(() => store.dispatch(loadUser()),[]);
+  
+  return (
+
+  
   <Provider store={store}>
 
       <Router>
         <Fragment>
-          <Navbar />
+          <Header />
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route component={Routes} />
@@ -24,6 +29,6 @@ const App =() => (
 
   </Provider>
 );
-
+};
 
 export default App;

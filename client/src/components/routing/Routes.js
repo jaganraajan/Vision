@@ -1,19 +1,20 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import Register from "../auth/Register";
-import Login from "../auth/Login";
+import SignUp from "../auth/SignUp";
+import SignIn from "../auth/SignIn";
+import Dashboard from '../dashboard/Dashboard';
 
 // import NotFound from "../layout/NotFound";
 // import Dashboard from "../dashboard/Dashboard";
-import PrivateRoute from "../routing/PrivateRoute";
+import PrivateRoute from "./PrivateRoute";
 
 const Routes = () => {
   return (
     <section className="container">
       <Switch>
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/login" component={Login} />
-        {/* <PrivateRoute exact path="/dashboard" component={Dashboard} /> */}
+        <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/signin" component={SignIn} />
+        <PrivateRoute exact path="/dashboard" component={Dashboard} />
 
         
       </Switch>

@@ -56,7 +56,7 @@ router.get(
 // @desc authenticate user and get token
 // @access public
 router.post(
-  "/login", cors(corsOptions),
+  "/signin", cors(corsOptions),
   async (req, res) => {
     
     // if (!errors.isEmpty())
@@ -79,9 +79,8 @@ router.post(
           .json({ errors: [{ msg: "Invalid Credentials" }] });
 
       const payload = {
-        user: {
-          id: user.id
-        }
+          id: user.id,
+          name: user.name
       };
 
       // Sign Token
@@ -92,7 +91,8 @@ router.post(
         (err, token) => {
           if (err) throw err;
           res.json({
-            token: token
+            success: true,
+            token: "Bearer " + token
           });
         }
       );
@@ -106,7 +106,7 @@ router.post(
 // @ POST api/users/register
 // @desc Register user
 // @access public
-router.post("/register", 
+router.post("/signup", 
 
 async (req, res) => {
     

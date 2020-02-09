@@ -1,13 +1,11 @@
 import axios from "axios";
 import {
-    REGISTER_SUCCESS,
-    REGISTER_FAIL,
-    USER_LOADED,
-    AUTH_ERROR,
-    LOGIN_SUCCESS,
-    LOGIN_FAIL,
-    LOGOUT,
-    CLEAR_PROFILE
+    SIGN_UP,
+    SIGN_UP_REFUSED,
+    LOAD_USER,
+    SIGN_IN,
+    SIGN_IN_REFUSED,
+    SIGN_OUT
   } from "./types";
 
   import setAuthToken from '../utils/setAuthToken';
@@ -26,19 +24,19 @@ export const loadUser = () => async dispatch => {
     if(res.data.name)
      {
        dispatch({
-         type: USER_LOADED,
+         type: LOAD_USER,
          payload: res.data
        })
      }
      else( console.log('error'))
   } catch (err) {
-    window.alert(err);
+    console.log(err);
     
   }
 
 }
 
-  export const register = ({name,email,password}) => async dispatch => {
+  export const signUp = ({name,email,password}) => async dispatch => {
 
     const config = {
       headers: {
@@ -51,10 +49,10 @@ export const loadUser = () => async dispatch => {
 
     try {
 
-      const res = await axios.post('http://localhost:5000/api/auth/register',body,config);
+      const res = await axios.post('http://localhost:5000/api/auth/signup',body,config);
 
       dispatch({
-        type: REGISTER_SUCCESS,
+        type: SIGN_UP,
         payload: res.data
       })
 
@@ -66,13 +64,13 @@ export const loadUser = () => async dispatch => {
       window.alert(err);
       
       dispatch({
-        type: REGISTER_FAIL
+        type: SIGN_UP_REFUSED
       })
     }
 
   }
 
-  export const login = ({email,password}) => async dispatch => {
+  export const signIn = ({email,password}) => async dispatch => {
 
     const config = {
       headers: {
@@ -84,24 +82,25 @@ export const loadUser = () => async dispatch => {
 
     try {
       
-      const res = await axios.post('api/auth/login',body,config)
+      const res = await axios.post('http://localhost:5000/api/auth/signin',body,config)
 
-      dispatch({
-        type: LOGIN_SUCCESS,
+       await dispatch({
+        type: SIGN_IN,
         payload: res.data
       })
+
+      dispatch(loadUser());
 
 
     } catch (err) {
       dispatch({
-        type:LOGIN_FAIL
+        type:SIGN_IN_REFUSED
       })
     }
 
   }
 
-  export const logout = () => dispatch => {
-    dispatch({ type: CLEAR_PROFILE });
-    dispatch({ type: LOGOUT });
+  export const signOut = () => dispatch => {    
+    dispatch({ type: SIGN_OUT });
   };
   

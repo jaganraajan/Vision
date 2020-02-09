@@ -2,17 +2,17 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { logout } from "../../actions/auth";
+import { signOut } from "../../actions/auth";
 
-const Navbar = () => {
+const Header = ({isAuthenticated,loading,signOut}) => {
   const authLinks = (
     <ul>
 
 
       <li>
-        <Link onClick={logout} to="/">
+        <Link onClick={signOut} to="/">
           <i className="fas fa-sign-out-alt" />{" "}
-          <span className="hide-sm">Logout</span>
+          <span className="hide-sm">sign-Out</span>
         </Link>
       </li>
     </ul>
@@ -22,10 +22,10 @@ const Navbar = () => {
     <ul>
 
       <li>
-        <Link to="/register">Register</Link>
+        <Link to="/signup">Sign-Up</Link>
       </li>
       <li>
-        <Link to="/login">Login</Link>
+        <Link to="/signin">Sign-In</Link>
       </li>
     </ul>
   );
@@ -34,24 +34,24 @@ const Navbar = () => {
     <nav className="navbar bg-dark">
       <h1>
         <Link to="/">
-          <i className="fas fa-code" /> DevSociety
+          <i className="fas fa-code" /> Vision
         </Link>
       </h1>
-      {guestLinks}
+      {isAuthenticated? authLinks: guestLinks}
     </nav>
   );
 };
 
-Navbar.propTypes = {
-  logout: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+Header.propTypes = {
+  signOut: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(
   mapStateToProps,
-  { logout }
-)(Navbar);
+  { signOut }
+)(Header);
