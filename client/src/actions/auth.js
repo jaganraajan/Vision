@@ -5,7 +5,8 @@ import {
     LOAD_USER,
     SIGN_IN,
     SIGN_IN_REFUSED,
-    SIGN_OUT
+    SIGN_OUT,
+    CLEAR_CHARTS
   } from "./types";
 
   import setAuthToken from '../utils/setAuthToken';
@@ -102,5 +103,6 @@ export const loadUser = () => async dispatch => {
 
   export const signOut = () => dispatch => {    
     dispatch({ type: SIGN_OUT });
+    dispatch({type: CLEAR_CHARTS});
   };
   

@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import { signOut } from "../../actions/auth";
 
 const Header = ({isAuthenticated,loading,signOut}) => {
+
+  
   const authLinks = (
     <ul>
 

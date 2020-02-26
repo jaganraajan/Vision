@@ -7,6 +7,8 @@
   --success-color: #28a745;
 }
 
+
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -41,8 +43,12 @@ img {
   overflow: hidden;
   padding: 0 2rem;
   margin-top: 6rem;
-  margin-bottom: 3rem;
+  margin-bottom: 
+  3rem;
 }
+
+
+
 
 /* Text Styles*/
 .x-large {
@@ -337,6 +343,7 @@ button {
   height: 100vh;
 }
 
+
 .landing-inner {
   color: #fff;
   height: 100%;
@@ -461,9 +468,10 @@ button {
 
 .post {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr 4fr;
   grid-gap: 2rem;
   align-items: center;
+  text-align: center;
 }
 
 .post > div:first-child {
@@ -487,6 +495,28 @@ button {
   font-size: 0.8rem;
   margin-bottom: 0.5rem;
 }
+
+
+
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  
+}
+
+.flex-item {
+  
+  padding: 5px;
+  width: 400px;
+  height: 400px;
+  margin-right: 70px; 
+  margin-top: 70px; 
+} 
+
+
+
 
 /* Mobile Styles */
 @media (max-width: 700px) {

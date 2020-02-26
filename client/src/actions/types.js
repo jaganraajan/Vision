@@ -5,3 +5,6 @@ export const AUTH_REFUSED = "AUTH_REFUSED";
 export const SIGN_IN = "SIGN_IN";
 export const SIGN_IN_REFUSED = "SIGN_IN_REFUSED";
 export const SIGN_OUT = "SIGN_OUT";
+export const GET_CHARTS = "GET_CHARTS";
+export const CLEAR_CHARTS = "CLEAR_CHARTS";
+
