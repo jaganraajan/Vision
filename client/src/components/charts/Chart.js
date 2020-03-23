@@ -11,7 +11,9 @@ const Chart =({chart}) => {
       return (<RenderBarChart  chart={chart}/>)
     case "Line":
       return (<RenderLineChart  chart={chart}/>)
-      default: return <h1>Undefined</h1>
+    case "Pie":
+      return (<RenderPieChart  chart={chart}/>)
+  default: return <h1>{""}</h1>
 
 
   }

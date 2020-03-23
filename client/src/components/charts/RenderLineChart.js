@@ -10,7 +10,7 @@ import CustomizedAxisTick from './CustomizedAxisTick'
 
 
 
-const RenderLineChart = () => {
+const RenderLineChart = ({chart}) => {
 //   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/xqjtetw0/';
 
   
@@ -22,7 +22,7 @@ const [chartData, setChartData] = useState({
 
 const loadData = async () =>{
 
-  const res = await getChartData(1);
+  const res = await getChartData(chart._id);
   setChartData({...chartData, data:res});
   
 }
@@ -38,7 +38,7 @@ useEffect(  () => {
 
 const {data} = chartData;
 
-if (data.length==0) return <Loading/>
+if (!data) return <Loading/>
 
     return (
       <div className='post'>

@@ -1,16 +1,13 @@
 import React, { PureComponent,useState,useEffect } from 'react';
 import {
-  ResponsiveContainer, PieChart, Pie, Legend,
+  ResponsiveContainer, PieChart, Pie, Legend, Cell, Tooltip, Label
 } from 'recharts';
 import {getChartData} from '../../actions/chart';
 import Loading from '../layout/Loading';
 
-const data = [
-  { name: 'Group A', value: 400 }, { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 }, { name: 'Group D', value: 200 },
-];
+const COLORS = ['#ed1818','#f26c0c' , '#35ed07','#2aebf5','#076bed'];
 
-const RenderPieChart = () => {
+const RenderPieChart = ({chart}) => {
 
 
     const [chartData, setChartData] = useState({
@@ -21,7 +18,7 @@ const RenderPieChart = () => {
       
       const loadData = async () =>{
       
-        const res = await getChartData(1);
+        const res = await getChartData(chart._id);
         setChartData({...chartData, data:res});
         
       }
@@ -37,13 +34,22 @@ const RenderPieChart = () => {
       
       const {data} = chartData;
 
-  
+   if (!data) return <Loading/>
+
     return (
-      <div style={{ width: '100%', height: 300 }} className="post" >
+      <div style={{ width: '100%', height: 400 }} className="post" >
         <h2>Title</h2>
         <ResponsiveContainer>
           <PieChart>
-            <Pie dataKey="value" data={data} fill="#8884d8" label />
+            <Pie dataKey="value" data={data} fill="#8884d8" label >
+              {
+              data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+              }
+              
+            </Pie>
+            <Tooltip/>
+            <Label/>
+            <Legend/>
           </PieChart>
         </ResponsiveContainer>
       </div>

@@ -26,7 +26,7 @@ const [chartData, setChartData] = useState({
 
 const loadData = async () =>{
 
-  const res = await getChartData(1);
+  const res = await getChartData(Chart._id);
   setChartData({...chartData, dataSource:res});
   
 }

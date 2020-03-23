@@ -53,8 +53,12 @@ router.post(
     }
   );
 
+  // passport.authenticate("jwt", {session:false}),
 
-  router.post('/update', passport.authenticate("jwt", {session:false}),
+// @ POST api/charts/update
+// @desc update a chart
+// @access Private
+  router.post('/update',
    async (req,res) => {
 
 
@@ -106,5 +110,56 @@ router.get(
       }
     }
   );
+
+  // ,
+  // passport.authenticate("jwt", { session: false })
+
+
+
+// @ POST api/chart/all
+// @desc get all charts of current logged user
+// @access Private
+router.get(
+  "/all",
+  async (req, res) => {
+    try {
+      const charts = await Chart.find().select("id").select("chartType")
+
+      if (charts.length < 1)
+        return res
+          .status(404)
+          .json({ msg: "No charts were found" });
+
+      return res.status(200).json(charts);
+    } catch (err) {
+      console.log(err);
+      return res.status(500).send("server error");
+    }
+  }
+);
+
+
+
+// @ POST api/charts/:PostID
+// @desc get chart by ID
+// @access Private
+router.get(
+  "/:ChartID",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const chart = await Chart.findById(req.params.ChartID);
+
+      if (!chart) return res.status(404).json({ msg: "No chart was found" });
+
+      return res.status(200).json(chart.data);
+    } catch (err) {
+      if (err.kind === "ObjectId")
+        return res.status(404).json({ msg: "No chart was found" });
+      console.log(err);
+      return res.status(500).send("server error");
+    }
+  }
+);
 
   module.exports = router;
