@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Chart from '../charts/Chart';
-
+import DashboardActions from "./DashboardActions";
 import  { getChartData , getCharts} from '../../actions/chart'
 import Spinner from "../layout/Loading"
 
@@ -17,6 +17,7 @@ const Dashboard = ({auth: {user},charts: {charts,loading}, getCharts}) => {
   return loading || charts === null? (<Spinner/>) : (
     
     <Fragment >
+      <DashboardActions/>
       <div className='flex-container'>
         {charts.map(chart => (<Chart key={chart._id} chart={chart} />))}
       </div>

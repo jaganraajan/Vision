@@ -44,3 +44,33 @@ export const getChartData = async ChartId => {
 
 }
 
+
+
+
+
+export const updateSubjects = async subjects => {
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }
+
+  const body = JSON.stringify(subjects)
+
+  try {
+    console.log(subjects)
+    
+    const res = await axios.post('http://localhost:5000/api/chart/subjects',body,config)
+
+    return res.data;
+
+    
+
+
+  } catch (err) {
+    console.log(err);
+  }
+
+}
+

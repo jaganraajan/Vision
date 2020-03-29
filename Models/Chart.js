@@ -18,6 +18,10 @@ const ChartSchema = new Schema({
             type: String,
             required: true
         },
+        subject: {
+            type: String,
+            required: true
+        },
         data: [ 
             {
              _id: false,

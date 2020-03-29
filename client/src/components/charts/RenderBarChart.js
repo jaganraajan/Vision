@@ -44,7 +44,7 @@ const {data} = chartData;
 if (!data) return <Loading/>
 
     return (
-      <div className='post'>
+      <div className='post'	>
       <h2>Title</h2>
       <BarChart
         width={500}
