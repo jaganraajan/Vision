@@ -15,11 +15,13 @@
   padding: 0;
 }
 
+
+
 body {
   font-family: 'Raleway', sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #fff;
+  background-color: #D3D3D3;
   color: #333;
 }
 
@@ -472,8 +474,9 @@ button {
   grid-gap: 2rem;
   align-items: center;
   text-align: center;
+  /* background: #f4f4f4;
+} */
 }
-
 .post > div:first-child {
   text-align: center;
 }
@@ -604,4 +607,18 @@ button {
   .post button {
     padding: 0.3rem 0.4rem;
   }
+
+
+  label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input,
+label {
+    margin: .4rem 0;
+}
+
+
+  
 }

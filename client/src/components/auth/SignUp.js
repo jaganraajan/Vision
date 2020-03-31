@@ -12,10 +12,11 @@ const SignUp = ({signUp,isAuthenticated}) => {
     name: "",
     email: "",
     password: "",
-    password2:""
+    password2:"",
+    subjects:[]
   })
 
-  const {name,email,password,password2} = formData;
+  const {name,email,password,password2,subjects} = formData;
 
   const onChange = e => setFormData({...formData, [e.target.name]: e.target.value})
 
@@ -27,7 +28,7 @@ const SignUp = ({signUp,isAuthenticated}) => {
     }
 
     else {
-      signUp({name,email,password})
+      signUp({name,email,password,subjects})
     }
   }
     

@@ -123,7 +123,8 @@ async (req, res) => {
         const newUser = new User({
           name: req.body.name,
           email: req.body.email,
-          password: req.body.password
+          password: req.body.password,
+          subjects: req.body.subjects
         });
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -156,5 +157,57 @@ async (req, res) => {
       }
     });
   });
+
+
+
+  router.post(
+  "/signin", cors(corsOptions),
+  async (req, res) => {
+    
+    // if (!errors.isEmpty())
+    //   return res.status(400).json({ errors: errors.array() });
+
+    try {
+      const { email, password } = req.body;
+
+      let user = await User.findOne({ email });
+
+      if (!user) {
+        const errors = ["Invalid credentials"];
+        return res.status(400).json(errors);
+      }
+      const isMatch = await bcrypt.compare(password, user.password);
+
+      if (!isMatch)
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "Invalid Credentials" }] });
+
+      const payload = {
+          id: user.id,
+          name: user.name
+      };
+
+      // Sign Token
+      jwt.sign(
+        payload,
+        config.get("secretOrKey"),
+        { expiresIn: 360000 },
+        (err, token) => {
+          if (err) throw err;
+          res.json({
+            success: true,
+            token: "Bearer " + token
+          });
+        }
+      );
+    } catch (err) {
+      return res.status(400).json({ errors: [{ msg: "Invalid Credentials" }] });
+    }
+  }
+);
+
+
+
 
 module.exports = router;
