@@ -28,41 +28,43 @@ if(isAuthenticated) return (<Redirect to='/dashboard'/>)
 
   return (
     <Fragment>
-      <h1 className="large text-primary">Sign In</h1>
-      <p className="lead">
-        <i className="fas fa-user" /> Sign Into Your Account
-      </p>
-      <form className="form" onSubmit={form => handleSubmit(form)} >
-        <div className="form-group">
-          <input
-            type="email"
-            placeholder="Email Address"
-            name="email"
-            value={email}
-            onChange={e => handleChange(e)}
-            
-            
-            required
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            minLength="3"
-            autoComplete="current-password"
-            value={password}
-            onChange={e => handleChange(e)}
-            
-            
-          />
-        </div>
-        <input type="submit" className="btn btn-primary" value="SignIn" />
-      </form>
-      <p className="my-1">
-        Don't have an account? <Link to="/signup">Sign Up</Link>
-      </p>
+      <div className='signup__form'>
+        <h1 className="large">Sign In</h1>
+        <p className="lead">
+          <i className="fas fa-user" /> Sign Into Your Account
+        </p>
+        <form className="form" onSubmit={form => handleSubmit(form)} >
+          <div className="form-group">
+            <input
+              type="email"
+              placeholder="Email Address"
+              name="email"
+              value={email}
+              onChange={e => handleChange(e)}
+              
+              
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              minLength="3"
+              autoComplete="current-password"
+              value={password}
+              onChange={e => handleChange(e)}
+              
+              
+            />
+          </div>
+          <input type="submit" className="btn btn-primary" value="Sign In" />
+        </form>
+        <p className="my-1">
+          Don't have an account? <Link to="/signup">Sign Up</Link>
+        </p>
+      </div>
     </Fragment>
   );
 };

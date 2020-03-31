@@ -24,10 +24,10 @@ const Header = ({isAuthenticated,loading,signOut}) => {
     <ul>
 
       <li>
-        <Link to="/signup">Sign-Up</Link>
+        <Link to="/signup">Sign Up</Link>
       </li>
       <li>
-        <Link to="/signin">Sign-In</Link>
+        <Link to="/signin">Sign In</Link>
       </li>
     </ul>
   );
@@ -36,7 +36,7 @@ const Header = ({isAuthenticated,loading,signOut}) => {
     <nav className="navbar bg-dark">
       <h1>
         <Link to="/">
-          <i className="fas fa-code" /> Vision
+          vision
         </Link>
       </h1>
       {isAuthenticated? authLinks: guestLinks}

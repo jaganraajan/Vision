@@ -13,16 +13,17 @@ const Landing = ({ isAuthenticated }) => {
     <section className="landing">
       <div className="dark-overlay">
         <div className="landing-inner">
-          <h1 className="x-large">We give business insights</h1>
+          <img src="logo3.png" alt="logo2"/>
+          <h1 className="x-large">Providing marketing insights for your business</h1>
           <p className="lead">
             Create a business analytics dashboard
           </p>
           <div className="buttons">
             <Link to="/signup" className="btn btn-primary">
-              Sign-Up
+              Register
             </Link>
             <Link to="/signin" className="btn btn-light">
-              Sign-In
+              Login
             </Link>
           </div>
         </div>

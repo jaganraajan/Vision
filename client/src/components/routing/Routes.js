@@ -10,7 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 
 const Routes = () => {
   return (
-    <section className="container">
+    <section className="landing2">
       <Switch>
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/signin" component={SignIn} />
