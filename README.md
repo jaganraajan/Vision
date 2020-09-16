@@ -8,7 +8,7 @@ We propose a solution for business clients, to continuously track all relevant T
 Figure below shows an abstract model of the architecture of our twitter based brand insights app. 
 
 It uses a data grabbing module to stream tweets from twitter and the processing module analyzes the customer sentiment. The back-end server stores the user credentials and the processed data in the database and also fetches data to be displayed on the front end system.
-https://user-images.githubusercontent.com/59519229/93353409-e6469180-f809-11ea-8027-32fe7010efa1.png
+![architecture](https://user-images.githubusercontent.com/59519229/93353409-e6469180-f809-11ea-8027-32fe7010efa1.png)
 
 # Video of tool in action:
-https://user-images.githubusercontent.com/59519229/93353412-e6df2800-f809-11ea-8afd-a35078215a00.gif
+![gif](https://user-images.githubusercontent.com/59519229/93353412-e6df2800-f809-11ea-8afd-a35078215a00.gif)
